@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LSAT Diagnostic Effectiveness Quiz | Academia Logica</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230b0f17'/><circle cx='50' cy='50' r='40' fill='none' stroke='%23d4af37' stroke-width='2'/><path d='M50 20 L28 72 H36 L43 54 H57 L64 72 H72 Z' fill='%23d4af37'/></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Cormorant Garamond', 'serif'],
+          },
+          colors: {
+            champagne: {
+              100: '#fdfbf7',
+              200: '#f7f2e9',
+              300: '#e8dcbe',
+              400: '#d4af37',
+              500: '#c5a880',
+              600: '#a3845b',
+            },
+            noir: {
+              900: '#0b0f17',
+              950: '#06080d',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .dark .glass-card {
+        background: rgba(15, 23, 36, 0.8);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        backdrop-filter: blur(16px);
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(197, 168, 128, 0.3);
+        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+        backdrop-filter: blur(16px);
+      }
+    }
+  </style>
+
+  <script>
+    (function() {
+      const storedTheme = localStorage.getItem('theme');
+      if (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+</head>
+<body class="bg-champagne-100 dark:bg-noir-950 text-slate-800 dark:text-slate-200 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-champagne-400 selection:text-noir-950">
+
+  <!-- Navigation Header -->
+  <header class="border-b border-champagne-500/20 py-4 px-6 bg-champagne-100/90 dark:bg-noir-950/90 backdrop-blur-md sticky top-0 z-40">
+    <div class="max-w-4xl mx-auto flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5">
+        <div class="w-7 h-7 rounded bg-noir-950 border border-champagne-500/40 flex items-center justify-center p-0.5">
+          <svg viewBox="0 0 100 100" class="w-full h-full text-champagne-400">
+            <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M 50 24 L 30 76 H 38 L 44 58 H 56 L 62 76 H 70 Z" fill="currentColor"/>
+          </svg>
+        </div>
+        <span class="font-serif text-lg font-semibold tracking-wider text-slate-900 dark:text-slate-100">ACADEMIA LOGICA</span>
+      </a>
+      
+      <div class="flex items-center gap-4 text-xs">
+        <span class="text-champagne-600 dark:text-champagne-400 font-medium">Diagnostic Portal</span>
+        <button onclick="toggleThemeManual()" aria-label="Toggle Mode" class="p-1.5 rounded bg-champagne-200 dark:bg-noir-900 border border-slate-300 dark:border-slate-800 text-slate-700 dark:text-slate-300">
+          <i data-lucide="sun" class="w-4 h-4 hidden dark:block text-amber-400"></i>
+          <i data-lucide="moon" class="w-4 h-4 block dark:hidden text-slate-700"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-3xl mx-auto px-4 py-10 w-full flex-1">
+
+    <!-- STEP 1: MODE SELECTION -->
+    <div id="quiz-intro" class="glass-card p-6 sm:p-10 rounded-2xl text-center space-y-6">
+      <span class="text-xs font-semibold text-champagne-600 dark:text-champagne-400 tracking-widest uppercase block">Cognitive Diagnostic Audit</span>
+      
+      <h1 class="font-serif text-3xl sm:text-4xl text-slate-900 dark:text-slate-100 font-normal leading-tight">
+        LSAT Analytical Effectiveness Assessment
+      </h1>
+
+      <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light max-w-xl mx-auto leading-relaxed">
+        Test your subconscious reasoning habits across 5 core LSAT formal logic domains. Select your diagnostic mode below to evaluate your baseline accuracy and receive a custom Cognitive Study Roadmap.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 text-left">
+        <!-- Untimed Card -->
+        <div onclick="startQuiz('untimed')" class="p-5 rounded-xl border border-slate-300 dark:border-slate-800 hover:border-champagne-500 cursor-pointer transition-all space-y-2 bg-white/50 dark:bg-noir-900/50 group">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-semibold text-slate-900 dark:text-slate-100 uppercase tracking-wider">Quick Untimed Mode</span>
+            <i data-lucide="coffee" class="w-4 h-4 text-champagne-500 group-hover:scale-110 transition-transform"></i>
+          </div>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400 font-light">
+            Focus purely on logical accuracy and diagnostic precision without time pressure.
+          </p>
+          <span class="text-[10px] text-champagne-600 dark:text-champagne-400 font-medium block pt-2">5 Questions • Untimed →</span>
+        </div>
+
+        <!-- Timed Card -->
+        <div onclick="startQuiz('timed')" class="p-5 rounded-xl border border-champagne-500/40 dark:border-champagne-400/40 bg-champagne-500/5 hover:border-champagne-400 cursor-pointer transition-all space-y-2 group">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-semibold text-slate-900 dark:text-slate-100 uppercase tracking-wider">5-Minute Timed Sprint</span>
+            <i data-lucide="timer" class="w-4 h-4 text-amber-500 group-hover:scale-110 transition-transform"></i>
+          </div>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400 font-light">
+            Simulate real 35-minute exam stress with a 5-minute countdown clock.
+          </p>
+          <span class="text-[10px] text-champagne-600 dark:text-champagne-400 font-medium block pt-2">5 Questions • 300s Clock →</span>
+        </div>
+      </div>
+
+      <div class="text-[11px] text-slate-500 dark:text-slate-400 font-light pt-2">
+        Authored by Sayon Bhattacharya (Practicing Attorney & Top 1st Percentile LSAT Instructor).
+      </div>
+    </div>
+
+    <!-- STEP 2: ACTIVE QUIZ DISPLAY -->
+    <div id="quiz-active" class="hidden space-y-6">
+      
+      <!-- Progress Bar & Timer Header -->
+      <div class="flex items-center justify-between text-xs font-medium border-b border-slate-300 dark:border-slate-800 pb-3">
+        <span id="quiz-progress-text" class="text-slate-600 dark:text-slate-400 uppercase tracking-wider">Question 1 of 5</span>
+        
+        <div id="timer-box" class="hidden items-center gap-1.5 px-3 py-1 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono">
+          <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+          <span id="timer-display">05:00</span>
+        </div>
+      </div>
+
+      <!-- Question Card -->
+      <div class="glass-card p-6 sm:p-8 rounded-2xl space-y-6">
+        <span id="q-category" class="text-[10px] uppercase font-semibold tracking-widest text-champagne-600 dark:text-champagne-400 block">Domain: Logical Reasoning</span>
+        
+        <div id="q-stimulus" class="text-xs sm:text-sm text-slate-800 dark:text-slate-200 leading-relaxed font-light bg-slate-100 dark:bg-noir-900 p-4 rounded-lg border border-slate-200 dark:border-slate-800">
+          <!-- Stimulus Text inserted here -->
+        </div>
+
+        <h3 id="q-prompt" class="font-serif text-lg sm:text-xl text-slate-900 dark:text-slate-100">
+          <!-- Question prompt inserted here -->
+        </h3>
+
+        <!-- Options Container -->
+        <div id="q-options" class="space-y-3">
+          <!-- Options inserted dynamically -->
+        </div>
+
+        <!-- Explanation Container (Shows after pick) -->
+        <div id="q-explanation" class="hidden p-4 rounded-xl text-xs space-y-2 border">
+          <!-- Instant Explanation inserted dynamically -->
+        </div>
+
+        <!-- Action Next Button -->
+        <div class="pt-2 flex justify-end">
+          <button id="next-btn" onclick="nextQuestion()" disabled class="px-6 py-2.5 rounded bg-champagne-500 dark:bg-champagne-400 text-white dark:text-noir-950 font-semibold text-xs tracking-wider uppercase disabled:opacity-40 disabled:cursor-not-allowed hover:bg-champagne-600 transition-all">
+            Continue →
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- STEP 3: FINAL DIAGNOSTIC REPORT & ROADMAP -->
+    <div id="quiz-results" class="hidden glass-card p-6 sm:p-10 rounded-2xl space-y-8 text-center">
+      
+      <div>
+        <span class="text-xs font-semibold text-champagne-600 dark:text-champagne-400 tracking-widest uppercase block mb-1">Diagnostic Report</span>
+        <h2 class="font-serif text-3xl text-slate-900 dark:text-slate-100">Your Cognitive Analytical Score</h2>
+      </div>
+
+      <!-- Score Display Circle -->
+      <div class="w-32 h-32 rounded-full border-4 border-champagne-500 flex flex-col items-center justify-center mx-auto bg-champagne-200/40 dark:bg-noir-900">
+        <span id="res-score" class="font-serif text-4xl font-bold text-slate-900 dark:text-slate-100">4/5</span>
+        <span id="res-pct" class="text-[10px] text-champagne-600 dark:text-champagne-400 uppercase tracking-wider font-semibold">80% Accuracy</span>
+      </div>
+
+      <!-- Personalized Path Recommendation -->
+      <div class="glass-card p-6 rounded-xl border text-left space-y-4">
+        <h3 id="res-path-title" class="font-serif text-xl text-champagne-600 dark:text-champagne-300">
+          Custom Remediation Path: Advanced Refinement
+        </h3>
+        <p id="res-path-desc" class="text-xs text-slate-700 dark:text-slate-300 font-light leading-relaxed">
+          Your formal logic baseline is strong, but timed exam pressure exposes subtle scope-drift traps.
+        </p>
+
+        <div class="border-t border-slate-200 dark:border-slate-800 pt-4 space-y-2">
+          <span class="text-[10px] font-semibold uppercase tracking-wider text-slate-500 block">Recommended 4-Week Action Plan</span>
+          <ul id="res-action-items" class="text-xs text-slate-700 dark:text-slate-300 font-light space-y-1.5 list-disc pl-4">
+            <!-- Dynamic Action Items -->
+          </ul>
+        </div>
+      </div>
+
+      <!-- Strategy Call CTA -->
+      <div class="bg-noir-950 text-slate-100 p-6 rounded-xl space-y-4 border border-champagne-500/30">
+        <h4 class="font-serif text-xl text-champagne-400">Discuss Your Results With Founder Sayon Bhattacharya</h4>
+        <p class="text-xs text-slate-300 font-light max-w-md mx-auto">
+          Schedule a 60-minute 1-on-1 strategy audit to review your scratchpad thought process line-by-line and build your official T14 admissions roadmap.
+        </p>
+        <a href="index.html#schedule" class="inline-block px-8 py-3.5 rounded bg-champagne-500 text-noir-950 font-semibold text-xs tracking-widest uppercase hover:bg-champagne-400 transition-colors shadow-lg">
+          Schedule 1-on-1 Strategy Audit ($99)
+        </a>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-300 dark:border-slate-900 py-6 text-center text-xs text-slate-500 dark:text-slate-400 font-light">
+    © 2026 Academia Logica. LSAT® is a registered trademark of LSAC.
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    function toggleThemeManual() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+      lucide.createIcons();
+    }
+
+    // 5 High-Yield LSAT Diagnostic Questions
+    const questions = [
+      {
+        category: "Domain: Necessary vs. Sufficient Flaws",
+        stimulus: "To qualify for a judicial clerkship, a candidate must graduate with high honors. Attorney Vance graduated with high honors. Therefore, Vance will definitely be offered a judicial clerkship.",
+        prompt: "Which of the following best describes the flaw in the reasoning above?",
+        options: [
+          { text: "A) Infers that a condition necessary for an outcome is sufficient to guarantee that outcome.", correct: true },
+          { text: "B) Presumes without justification that all honors graduates become trial lawyers.", correct: false },
+          { text: "C) Fails to consider that Vance may not have applied for any clerkships.", correct: false },
+          { text: "D) Relies on popular opinion rather than established legal requirements.", correct: false }
+        ],
+        explanation: "<strong>Correct Answer: A</strong><br/>Graduating with high honors is a <em>necessary prerequisite</em> (must qualify), but not a <em>sufficient guarantee</em> (definitely offered). The argument treats a required condition as a guarantee."
+      },
+      {
+        category: "Domain: Quantifier & Scope Drift",
+        stimulus: "Most senior partners at corporate litigation firms in New York work more than 60 hours per week. Therefore, most legal practitioners nationwide work more than 60 hours per week.",
+        prompt: "The argument above is most vulnerable to criticism on which ground?",
+        options: [
+          { text: "A) It draws a conclusion about a broad nationwide population based on a narrow sub-group.", correct: true },
+          { text: "B) It assumes that corporate partners earn higher salaries than public interest attorneys.", correct: false },
+          { text: "C) It confuses cause and effect in attorney working hours.", correct: false },
+          { text: "D) It relies on contradictory statistical premises.", correct: false }
+        ],
+        explanation: "<strong>Correct Answer: A</strong><br/>The premise restricts its scope to 'senior corporate litigation partners in NYC', while the conclusion overreaches to 'all legal practitioners nationwide'. This is a classic Scope Shift."
+      },
+      {
+        category: "Domain: Causal Reasoning & Confounding Factors",
+        stimulus: "A study showed that law students who participate in 1-on-1 private mentorship score higher on the LSAT than students who study alone. Thus, 1-on-1 mentorship is the sole cause of higher LSAT scores.",
+        prompt: "Which of the following, if true, most seriously weakens the argument?",
+        options: [
+          { text: "A) Students who seek 1-on-1 mentorship also devote 50% more hours to independent practice.", correct: true },
+          { text: "B) Some students who study alone still achieve scores in the mid-150s.", correct: false },
+          { text: "C) 1-on-1 mentorship sessions are conducted over video calls.", correct: false },
+          { text: "D) Law school admissions officers evaluate both GPA and LSAT scores.", correct: false }
+        ],
+        explanation: "<strong>Correct Answer: A</strong><br/>Option A introduces a confounding third factor (50% more practice hours) that offers an alternative explanation for the higher scores, undermining the claim that mentorship was the sole cause."
+      },
+      {
+        category: "Domain: Necessary Assumption & Negation",
+        stimulus: "Candidate Miller will win the bar association election because she has the endorsement of the outgoing president.",
+        prompt: "Which of the following is an assumption required by the argument?",
+        options: [
+          { text: "A) The endorsement of the outgoing president carries significant influence among voting members.", correct: true },
+          { text: "B) Candidate Miller has practiced law for over twenty years.", correct: false },
+          { text: "C) No other candidate in the election is qualified to serve.", correct: false },
+          { text: "D) The bar association election is held annually.", correct: false }
+        ],
+        explanation: "<strong>Correct Answer: A</strong><br/>Applying the Negation Test: If the endorsement carries NO influence, the argument completely collapses. Therefore, Choice A is a strictly necessary assumption."
+      },
+      {
+        category: "Domain: Formal Conditional Proofs",
+        stimulus: "If a contract contains an arbitration clause (A), then disputes must be settled out of court (S). If disputes are settled out of court (S), then public court filings are prohibited (P). A contract does NOT prohibit public court filings.",
+        prompt: "If the statements above are true, which of the following MUST also be true?",
+        options: [
+          { text: "A) The contract does NOT contain an arbitration clause.", correct: true },
+          { text: "B) The contract was drafted by a corporate attorney.", correct: false },
+          { text: "C) The contract contains an arbitration clause.", correct: false },
+          { text: "D) Disputes under the contract will be resolved out of court.", correct: false }
+        ],
+        explanation: "<strong>Correct Answer: A</strong><br/>Chain: A → S → P. Contrapositive: ~P → ~S → ~A. Since public filings are NOT prohibited (~P), it validly follows that the contract does NOT contain an arbitration clause (~A)."
+      }
+    ];
+
+    let currentQ = 0;
+    let score = 0;
+    let selectedOption = null;
+    let mode = 'untimed';
+    let timerInterval = null;
+    let timeRemaining = 300; // 5 minutes in seconds
+
+    function startQuiz(chosenMode) {
+      mode = chosenMode;
+      document.getElementById('quiz-intro').classList.add('hidden');
+      document.getElementById('quiz-active').classList.remove('hidden');
+
+      if (mode === 'timed') {
+        document.getElementById('timer-box').classList.remove('hidden');
+        document.getElementById('timer-box').classList.add('flex');
+        startTimer();
+      }
+
+      loadQuestion();
+    }
+
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        timeRemaining--;
+        const mins = Math.floor(timeRemaining / 60);
+        const secs = timeRemaining % 60;
+        document.getElementById('timer-display').innerText = 
+          `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+
+        if (timeRemaining <= 0) {
+          clearInterval(timerInterval);
+          finishQuiz();
+        }
+      }, 1000);
+    }
+
+    function loadQuestion() {
+      const q = questions[currentQ];
+      selectedOption = null;
+      document.getElementById('next-btn').disabled = true;
+
+      document.getElementById('quiz-progress-text').innerText = `Question ${currentQ + 1} of ${questions.length}`;
+      document.getElementById('q-category').innerText = q.category;
+      document.getElementById('q-stimulus').innerText = q.stimulus;
+      document.getElementById('q-prompt').innerText = q.prompt;
+
+      const expBox = document.getElementById('q-explanation');
+      expBox.classList.add('hidden');
+      expBox.className = "hidden p-4 rounded-xl text-xs space-y-2 border";
+
+      const optsContainer = document.getElementById('q-options');
+      optsContainer.innerHTML = '';
+
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = "w-full text-left p-4 rounded-xl border border-slate-300 dark:border-slate-800 text-xs text-slate-800 dark:text-slate-200 hover:border-champagne-500 transition-all font-light bg-white/40 dark:bg-noir-900/40";
+        btn.innerText = opt.text;
+        btn.onclick = () => selectAnswer(idx, btn);
+        optsContainer.appendChild(btn);
+      });
+    }
+
+    function selectAnswer(idx, btnEl) {
+      if (selectedOption !== null) return; // Prevent changing after selection
+      selectedOption = idx;
+      const q = questions[currentQ];
+      const isCorrect = q.options[idx].correct;
+
+      if (isCorrect) score++;
+
+      // Style options
+      const optBtns = document.getElementById('q-options').children;
+      for (let i = 0; i < optBtns.length; i++) {
+        optBtns[i].disabled = true;
+        if (q.options[i].correct) {
+          optBtns[i].className = "w-full text-left p-4 rounded-xl border-2 border-emerald-500 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 font-medium text-xs";
+        } else if (i === idx && !isCorrect) {
+          optBtns[i].className = "w-full text-left p-4 rounded-xl border-2 border-rose-500 bg-rose-500/10 text-rose-700 dark:text-rose-300 font-medium text-xs";
+        }
+      }
+
+      // Show Explanation Box
+      const expBox = document.getElementById('q-explanation');
+      expBox.innerHTML = q.explanation;
+      expBox.classList.remove('hidden');
+      if (isCorrect) {
+        expBox.classList.add('bg-emerald-500/10', 'border-emerald-500/30', 'text-emerald-800', 'dark:text-emerald-200');
+      } else {
+        expBox.classList.add('bg-rose-500/10', 'border-rose-500/30', 'text-rose-800', 'dark:text-rose-200');
+      }
+
+      document.getElementById('next-btn').disabled = false;
+    }
+
+    function nextQuestion() {
+      currentQ++;
+      if (currentQ < questions.length) {
+        loadQuestion();
+      } else {
+        finishQuiz();
+      }
+    }
+
+    function finishQuiz() {
+      if (timerInterval) clearInterval(timerInterval);
+
+      document.getElementById('quiz-active').classList.add('hidden');
+      document.getElementById('quiz-results').classList.remove('hidden');
+
+      const pct = Math.round((score / questions.length) * 100);
+      document.getElementById('res-score').innerText = `${score}/${questions.length}`;
+      document.getElementById('res-pct').innerText = `${pct}% Accuracy`;
+
+      let title = "";
+      let desc = "";
+      let items = [];
+
+      if (pct >= 80) {
+        title = "Path A: Advanced T14 Score Polish (168+ Target)";
+        desc = "Your formal logic foundation is solid. Score gains will come from refining timed scratchpad discipline and isolating subtle scope shift distractors.";
+        items = [
+          "Focus on 1-on-1 scratchpad timing audits under 35-minute pressure.",
+          "Master Kantian Negation operators on complex Necessary Assumption stimuli.",
+          "Target T14 full-tuition merit scholarship application strategy."
+        ];
+      } else if (pct >= 60) {
+        title = "Path B: Cognitive Habit Remediation (160–167 Target)";
+        desc = "You have strong intuitive comprehension, but System 1 subconscious traps (like necessary vs. sufficient confusion) are causing score variance.";
+        items = [
+          "Institute mandatory 3-part scratchpad error log journaling for missed LR questions.",
+          "Translate dense conditional stimuli into formal symbolic notation prior to reading choices.",
+          "Eliminate passive video lecture consumption in favor of 1-on-1 error auditing."
+        ];
+      } else {
+        title = "Path C: Foundational Logic Reconstruction (150–159 Target)";
+        desc = "Your baseline demonstrates significant vulnerability to classic distractor traps and conditional fallacies.";
+        items = [
+          "Re-build formal logic syntax rules (Contrapositives, Necessary vs. Sufficient conditions).",
+          "Practice untimed section mapping to establish 100% logical accuracy before adding speed.",
+          "Schedule a 60-minute Strategy Audit to construct your custom 8-week study roadmap."
+        ];
+      }
+
+      document.getElementById('res-path-title').innerText = title;
+      document.getElementById('res-path-desc').innerText = desc;
+
+      const itemsUl = document.getElementById('res-action-items');
+      itemsUl.innerHTML = items.map(it => `<li>${it}</li>`).join('');
+    }
+  </script>
+</body>
+</html>
