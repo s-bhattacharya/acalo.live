@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Epistemology of LSAT Reasoning | Academia Logica Treatise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Cormorant Garamond', 'serif'],
+          },
+          colors: {
+            champagne: {
+              100: '#fdfbf7',
+              200: '#f7f2e9',
+              300: '#e8dcbe',
+              400: '#d4af37',
+              500: '#c5a880',
+              600: '#a3845b',
+            },
+            noir: {
+              900: '#0b0f17',
+              950: '#06080d',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @media print {
+      body { background: white !important; color: black !important; }
+      .no-print { display: none !important; }
+      .page-break { page-break-before: always; }
+    }
+    .serif-italic { font-family: 'Cormorant Garamond', serif; font-style: italic; }
+  </style>
+</head>
+<body class="bg-champagne-100 dark:bg-noir-950 text-slate-800 dark:text-slate-200 font-sans leading-relaxed selection:bg-champagne-400 selection:text-noir-950">
+
+  <!-- Printable Controls -->
+  <div class="no-print bg-noir-900 border-b border-champagne-500/20 py-3 px-6 text-center flex items-center justify-between text-xs text-slate-300 sticky top-0 z-50">
+    <div class="flex items-center gap-2">
+      <span class="text-champagne-400 font-serif font-semibold">ACADEMIA LOGICA</span>
+      <span>•</span>
+      <span>Comprehensive Analytical Treatise</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <button onclick="window.print()" class="px-4 py-1.5 rounded bg-champagne-500 text-noir-950 font-semibold uppercase tracking-wider hover:bg-champagne-400 transition-colors">
+        Print / Download PDF
+      </button>
+      <a href="index.html" class="text-slate-400 hover:text-champagne-300 transition-colors">← Return to Main Portal</a>
+    </div>
+  </div>
+
+  <main class="max-w-4xl mx-auto px-6 py-12 sm:py-20">
+
+    <!-- Header Section -->
+    <header class="border-b border-champagne-500/30 pb-10 mb-12">
+      <div class="flex justify-between items-start mb-6">
+        <div>
+          <span class="text-xs font-semibold text-champagne-600 dark:text-champagne-400 tracking-[0.25em] uppercase block mb-1">Academia Logica • Monograph Series</span>
+          <h1 class="font-serif text-3xl sm:text-5xl font-normal text-slate-900 dark:text-slate-100 leading-tight">
+            Deconstructing The 5 Subconscious Reasoning Traps <br />
+            <span class="serif-italic text-champagne-600 dark:text-champagne-300 font-light">Stalling 160+ LSAT Score Growth</span>
+          </h1>
+        </div>
+      </div>
+
+      <!-- Author Attribution Card -->
+      <div class="p-6 rounded-xl bg-champagne-200/50 dark:bg-noir-900 border border-champagne-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs">
+        <div>
+          <div class="font-serif text-xl font-semibold text-slate-900 dark:text-slate-100">Sayon Bhattacharya</div>
+          <div class="text-slate-600 dark:text-slate-400 font-light mt-0.5">
+            Practicing Attorney • Fellow of the Chartered Institute of Arbitrators (FCIArb), London • Top 1st Percentile LSAT Instructor
+          </div>
+        </div>
+        <div class="text-right shrink-0">
+          <span class="px-3 py-1 rounded bg-champagne-500/10 border border-champagne-500/30 text-champagne-600 dark:text-champagne-400 font-mono text-[11px]">Vol. IV • Treatise Edition</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- SECTION I: Theoretical Foundations -->
+    <section class="mb-16 space-y-6">
+      <h2 class="font-serif text-2xl text-slate-900 dark:text-slate-100 border-b border-slate-300 dark:border-slate-800 pb-2">
+        Section I: The Epistemological Architecture of LSAT Scoring
+      </h2>
+      
+      <p class="text-sm text-slate-700 dark:text-slate-300 font-light leading-relaxed">
+        Law school admission candidates frequently view the Law School Admission Test through a conventional pedagogical lens: they treat it as an accumulation of legal knowledge or a speed test of reading comprehension. Consequently, when candidates plateau between 152 and 162, their default instinct is to increase quantitative study volume—solving thousands of additional licensed practice questions, watching dozens of hours of recorded online video modules, and memorizing question type labels.
+      </p>
+
+      <p class="text-sm text-slate-700 dark:text-slate-300 font-light leading-relaxed">
+        Empirical observation across more than 12 candidate cohorts demonstrates that score stagnation above 160 is rarely an information problem. It is a <strong>metacognitive habit defect</strong>.
+      </p>
+
+      <div class="p-5 rounded-lg bg-slate-100 dark:bg-noir-900 border border-slate-300 dark:border-slate-800 text-xs space-y-2">
+        <h4 class="font-serif text-base font-semibold text-slate-900 dark:text-slate-100">Dual-Process Cognitive Theory in Standardized Testing</h4>
+        <p class="text-slate-600 dark:text-slate-400">
+          Under timed 35-minute exam constraints, human cognition relies heavily on <em>System 1 processing</em>—fast, intuitive heuristics designed for real-world social communication. System 1 favors semantic narrative plausibility, emotional resonance, and conversational implicit assumptions.
+        </p>
+        <p class="text-slate-600 dark:text-slate-400">
+          The Law School Admission Council (LSAC) specifically engineers distractor answer choices to exploit these exact System 1 heuristics. To break the 170 score threshold, a candidate must systematically override System 1 processing and institute <em>System 2 formal modal logic mapping</em>—replacing intuitive guessing with absolute mathematical certainty.
+        </p>
+      </div>
+
+      <p class="text-sm text-slate-700 dark:text-slate-300 font-light leading-relaxed border-l-2 border-champagne-500 pl-4 italic">
+        "The difference between a 155 and a 172 candidate is not intelligence or effort. It is the ability to recognize distractor traps prior to reading the answer choices by mapping argument premises like formal proofs."
+      </p>
+    </section>
+
+    <!-- SECTION II: Deep-Dive Into The 5 Cognitive Traps -->
+    <section class="mb-16 space-y-12">
+      <h2 class="font-serif text-2xl text-slate-900 dark:text-slate-100 border-b border-slate-300 dark:border-slate-800 pb-2">
+        Section II: Comprehensive Breakdown of the 5 Subconscious Traps
+      </h2>
+
+      <!-- TRAP 1 -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-full bg-champagne-500/20 text-champagne-600 dark:text-champagne-400 border border-champagne-500/40 flex items-center justify-center font-serif font-bold text-sm">I</span>
+          <h3 class="font-serif text-2xl text-slate-900 dark:text-slate-100">
+            The Conditional Transference Fallacy (Necessary vs. Sufficient)
+          </h3>
+        </div>
+
+        <div class="space-y-3 text-sm text-slate-700 dark:text-slate-300 font-light leading-relaxed pl-11">
+          <p>
+            The single most frequent reasoning error across Logical Reasoning sections is the confusion of a <strong>Necessary Condition</strong> (a mandatory requirement) with a <strong>Sufficient Condition</strong> (a sufficient guarantee).
+          </p>
+          
+          <div class="p-4 rounded-lg bg-slate-100 dark:bg-noir-900 border border-slate-300 dark:border-slate-800 font-mono text-xs text-slate-800 dark:text-slate-300 space-y-1 my-3">
+            <div>Premise Statement: P → Q (Occurrence of P guarantees Q)</div>
+            <div>Flawed Inference: Q → P (Assuming Q proves P occurred)</div>
+            <div class="text-amber-600 dark:text-champagne-400 font-bold">Standard LSAC Rephrase: "Takes for granted that a condition required for an outcome is sufficient to guarantee that outcome."</div>
+          </div>
+
+          <p>
+            <strong>The Cognitive Mechanism:</strong> In daily conversational discourse, humans blur necessary and sufficient conditions constantly. If an employer states, <em>"To be hired as senior counsel, an applicant must hold a Juris Doctor,"</em> conversational intuition leads the brain to assume that holding a J.D. guarantees employment. On the LSAT, this subconscious leap leads candidates directly into high-percentage distractor choices.
+          </p>
+
+          <div class="p-4 rounded-lg bg-champagne-200/40 dark:bg-noir-900 border-l-4 border-champagne-500 text-xs space-y-1">
+            <strong class="text-slate-900 dark:text-slate-100 block font-serif text-sm">The Remediation Protocol:</strong>
+            <p>We train candidates to translate every conditional stimulus into formal symbolic syntax on their scratchpad prior to reading answer choices. By treating arguments as mathematical equations, distractor choices become instantly transparent.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRAP 2 -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-full bg-champagne-500/20 text-champagne-600 dark:text-champagne-400 border border-champagne-500/40 flex items-center justify-center font-serif font-bold text-sm">II</span>
+          <h3 class="font-serif text-2xl text-slate-900 dark:text-slate-100">
+            Scope-Drift Blindness & Quantifier Incongruity
+          </h3>
+        </div>
+
+        <div class="space-y-3 text-sm text-slate-700 dark:text-slate-300 font-light leading-relaxed pl-11">
+          <p>
+            Test writers construct subtle shifts in domain scope between the premises and the conclusion. For example, a stimulus presents empirical data regarding <em>"most corporate litigation partners in major metropolitan areas"</em> and quietly draws a conclusion regarding <em>"attorneys nationwide."</em>
+          </p>
+          
+          <p>
+            Under 35-minute exam stress, System 1 processing automatically bridges missing contextual links to make the story coherent. Candidates subconsciously equate <em>"most"</em> with <em>"all,"</em> or generalize specific professional/geographic domains.
+          </p>
+
+          <div class="p-4 rounded-lg bg-champagne-200/40 dark:bg-noir-900 border-l-4 border-champagne-500 text-xs space-y-1">
+            <strong class="text-slate-900 dark:text-slate-100 block font-serif text-sm">The Remediation Protocol:</strong>
+            <p>We institute a strict <strong>Quantifier Boundary Audit</strong>. Every quantifier (<em>All, Most, Some, Few, Never</em>) and domain limitation must be explicitly logged on the scratchpad, forcing System 2 to verify whether the conclusion oversteps the exact scope established by the premises.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRAP 3 -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-full bg-champagne-500/20 text-champagne-600 dark:text-champagne-400 border border-champagne-500/40 flex items-center justify-center font-serif font-bold text-sm">III</span>
+          <h3 class="font-serif text-2xl text-slate-900 dark:text-slate-100">
+            Causal Reversibility & Confounding Factor Neglect
+          </h3>
+        </div>
+
+        <div class="space-y-3 text-sm text-slate-700 dark:text-slate-300 font-light leading-relaxed pl-11">
+          <p>
+            When a stimulus presents a statistical correlation between Event A and Event B (e.g., <em>"Candidates who engage private mentors achieve higher merit scholarship amounts"</em>), the author jumps to the conclusion that mentorship directly caused the scholarship outcome.
+          </p>
+          
+          <p>
+            Untrained test-takers focus on whether the conclusion sounds plausible in real life. However, 170+ high-scorers immediately test three alternative causal hypotheses before examining the answer choices:
+          </p>
+
+          <ul class="list-disc pl-5 space-y-1 text-xs text-slate-700 dark:text-slate-300">
+            <li><strong>Reverse Causality:</strong> Did Event B actually cause Event A?</li>
+            <li><strong>Confounding Variable:</strong> Did an unmentioned third factor C cause both A and B?</li>
+            <li><strong>Spurious Correlation:</strong> Is the relationship a statistical coincidence?</li>
+          </ul>
+
+          <div class="p-4 rounded-lg bg-champagne-200/40 dark:bg-noir-900 border-l-4 border-champagne-500 text-xs space-y-1">
+            <strong class="text-slate-900 dark:text-slate-100 block font-serif text-sm">The Remediation Protocol:</strong>
+            <p>Instead of asking "Is this statement true?", we train candidates to ask: "What unstated assumption must hold true for this causal link to remain valid?" This immediately exposes the correct option in Strengthen, Weaken, and Assumption questions.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRAP 4 -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-full bg-champagne-500/20 text-champagne-600 dark:text-champagne-400 border border-champagne-500/40 flex items-center justify-center font-serif font-bold text-sm">IV</span>
+          <h3 class="font-serif text-2xl text-slate-900 dark:text-slate-100">
+            The Illusion of Competence (Passive Video Consumption)
+          </h3>
+        </div>
+
+        <div class="space-y-3 text-sm text-slate-700 dark:text-slate-300 font-light leading-relaxed pl-11">
+          <p>
+            This is the single most destructive trap for modern self-study applicants. After completing a practice test, a candidate reviews an online video explanation. As the video instructor walks through the logic step-by-step, the candidate nods along, thinking: <em>"Ah, of course! Option C makes total sense. I see why I missed it."</em>
+          </p>
+          
+          <p>
+            Cognitive scientists term this the <strong>Fluency Heuristic</strong> or the <strong>Metacognitive Illusion of Competence</strong>. Understanding an explanation presented by an expert builds passive recognition, not active production. Next week under exam conditions, the candidate's brain executes the exact same subconscious misstep.
+          </p>
+
+          <div class="p-4 rounded-lg bg-champagne-200/40 dark:bg-noir-900 border-l-4 border-champagne-500 text-xs space-y-1">
+            <strong class="text-slate-900 dark:text-slate-100 block font-serif text-sm">The Remediation Protocol:</strong>
+            <p>True score jumps require <strong>Line-by-Line Scratchpad Error Auditing</strong>. A mentor must inspect your physical scratchpad decision logs to diagnose <em>why your brain picked Distractor Choice B at minute 2:15 under pressure</em>—and correct the decision pathway before your next test.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRAP 5 -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-full bg-champagne-500/20 text-champagne-600 dark:text-champagne-400 border border-champagne-500/40 flex items-center justify-center font-serif font-bold text-sm">V</span>
+          <h3 class="font-serif text-2xl text-slate-900 dark:text-slate-100">
+            Misapplying Negation Operators on Assumption Questions
+          </h3>
+        </div>
+
+        <div class="space-y-3 text-sm text-slate-700 dark:text-slate-300 font-light leading-relaxed pl-11">
+          <p>
+            On Necessary Assumption questions, candidates frequently select choices that strongly <em>strengthen</em> the argument, rather than choices that are strictly <em>necessary</em> for the argument to survive.
+          </p>
+          
+          <p>
+            To evaluate a necessary assumption, one must execute formal logical negation. If the logically negated version of an answer choice leaves the argument's conclusion intact, that choice is NOT a necessary assumption.
+          </p>
+
+          <div class="p-4 rounded-lg bg-champagne-200/40 dark:bg-noir-900 border-l-4 border-champagne-500 text-xs space-y-1">
+            <strong class="text-slate-900 dark:text-slate-100 block font-serif text-sm">The Remediation Protocol:</strong>
+            <p>We train candidates to execute the formal <strong>Kantian Negation Protocol</strong>: negate the primary verb of the top two candidate choices. The correct choice, when negated, acts as a logical sledgehammer that renders the argument impossible.</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- SECTION III: Academia Logica Method & Outcomes -->
+    <section class="mb-16 space-y-6">
+      <h2 class="font-serif text-2xl text-slate-900 dark:text-slate-100 border-b border-slate-300 dark:border-slate-800 pb-2">
+        Section III: The Academia Logica Mentorship Standards
+      </h2>
+
+      <p class="text-sm text-slate-700 dark:text-slate-300 font-light leading-relaxed">
+        Academia Logica was founded on a singular premise: 1-on-1 private cognitive mentorship is the only proven method to re-wire reasoning habits for high-stakes test-takers. Across more than 12 graduated candidate cohorts, our students have achieved:
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center my-6">
+        <div class="p-4 rounded-lg bg-champagne-200/50 dark:bg-noir-900 border border-champagne-500/30">
+          <div class="font-serif text-2xl text-champagne-600 dark:text-champagne-400 font-bold">$500,000+</div>
+          <div class="text-[11px] text-slate-600 dark:text-slate-400 uppercase font-medium mt-1">Merit Grants Secured</div>
+        </div>
+        <div class="p-4 rounded-lg bg-champagne-200/50 dark:bg-noir-900 border border-champagne-500/30">
+          <div class="font-serif text-2xl text-champagne-600 dark:text-champagne-400 font-bold">+14.2 Points</div>
+          <div class="text-[11px] text-slate-600 dark:text-slate-400 uppercase font-medium mt-1">Average Score Boost</div>
+        </div>
+        <div class="p-4 rounded-lg bg-champagne-200/50 dark:bg-noir-900 border border-champagne-500/30">
+          <div class="font-serif text-2xl text-champagne-600 dark:text-champagne-400 font-bold">94%</div>
+          <div class="text-[11px] text-slate-600 dark:text-slate-400 uppercase font-medium mt-1">T14 Acceptance Rate</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Institutional Summary & Consultation -->
+    <footer class="mt-20 pt-10 border-t border-champagne-500/40 bg-champagne-200/40 dark:bg-noir-900 p-8 sm:p-10 rounded-2xl border text-center space-y-6">
+      
+      <div class="max-w-2xl mx-auto space-y-3">
+        <span class="text-xs font-semibold text-champagne-600 dark:text-champagne-400 tracking-widest uppercase block">Personal Analytical Consultation</span>
+        <h3 class="font-serif text-2xl sm:text-3xl text-slate-900 dark:text-slate-100 font-normal">
+          Begin Your 1-on-1 Cognitive Strategy Audit
+        </h3>
+        <p class="text-xs text-slate-700 dark:text-slate-300 font-light leading-relaxed">
+          If you are preparing for the upcoming LSAT and seeking to break through score ceilings, schedule a 60-minute 1-on-1 strategy audit with founder Sayon Bhattacharya. We will review your diagnostic error log line-by-line and construct your personalized Cognitive Analytical roadmap.
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+        <a href="https://acalo.live/#schedule" class="px-8 py-3.5 rounded bg-champagne-500 dark:bg-champagne-400 text-white dark:text-noir-950 font-semibold text-xs tracking-widest uppercase hover:bg-champagne-600 dark:hover:bg-champagne-300 transition-colors shadow-lg">
+          Schedule Strategy Audit ($99)
+        </a>
+        <a href="https://acalo.live" class="px-6 py-3.5 rounded glass-panel-subtle text-slate-800 dark:text-slate-200 font-medium text-xs tracking-widest uppercase hover:border-champagne-500/40 transition-all">
+          Explore Main Portal
+        </a>
+      </div>
+
+      <div class="text-[10px] text-slate-500 dark:text-slate-400 pt-4 border-t border-slate-300 dark:border-slate-800">
+        © 2026 Academia Logica. LSAT® is a registered trademark of the Law School Admission Council (LSAC).
+      </div>
+    </footer>
+
+  </main>
+
+</body>
+</html>
