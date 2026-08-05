@@ -20,9 +20,6 @@
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- Calendly Official SDK JS -->
-  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -137,6 +134,7 @@
         <a href="#scholarships" class="hover:text-champagne-600 dark:hover:text-champagne-400 transition-colors whitespace-nowrap">Scholarship Impact</a>
         <a href="#calculator" class="hover:text-champagne-600 dark:hover:text-champagne-400 transition-colors whitespace-nowrap">Admissions Horizon</a>
         <a href="#offerings" class="hover:text-champagne-600 dark:hover:text-champagne-400 transition-colors whitespace-nowrap">Offerings</a>
+        <a href="diagnostic.html" class="hover:text-champagne-600 dark:hover:text-champagne-400 transition-colors whitespace-nowrap text-champagne-600 dark:text-champagne-400 font-semibold">Diagnostic Quiz</a>
       </nav>
 
       <!-- Right Action Controls with isolated left margin -->
@@ -172,6 +170,7 @@
       <a href="#scholarships" onclick="toggleMobileMenu()" class="block text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-champagne-600 dark:hover:text-champagne-400 uppercase tracking-wider">Scholarship Impact</a>
       <a href="#calculator" onclick="toggleMobileMenu()" class="block text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-champagne-600 dark:hover:text-champagne-400 uppercase tracking-wider">Admissions Horizon</a>
       <a href="#offerings" onclick="toggleMobileMenu()" class="block text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-champagne-600 dark:hover:text-champagne-400 uppercase tracking-wider">Offerings</a>
+      <a href="diagnostic.html" onclick="toggleMobileMenu()" class="block text-sm font-semibold text-champagne-600 dark:text-champagne-400 uppercase tracking-wider">LSAT Diagnostic Quiz</a>
       <a href="#schedule" onclick="toggleMobileMenu()" class="block w-full text-center py-3 rounded bg-champagne-500 dark:bg-champagne-400 text-slate-950 dark:text-noir-950 font-semibold text-xs tracking-wider uppercase">
         Request Consultation
       </a>
@@ -207,6 +206,11 @@
         <a href="#lead-magnet" class="w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 rounded-md glass-panel-subtle text-slate-800 dark:text-slate-200 font-medium text-xs tracking-widest uppercase hover:border-champagne-500/40 transition-all flex items-center justify-center gap-2">
           <span>Download Free Executive Report</span>
         </a>
+      </div>
+
+      <!-- Subtle Diagnostic Quiz Link Bar -->
+      <div class="mt-6 text-xs text-slate-600 dark:text-slate-400">
+        Prefer to test your baseline first? Take our <a href="diagnostic.html" class="text-champagne-600 dark:text-champagne-400 underline font-medium hover:text-champagne-500">Interactive 5-Question LSAT Diagnostic Quiz →</a>
       </div>
 
       <!-- Proven Performance Metrics Strip -->
@@ -359,109 +363,77 @@
           Begin Your <span class="font-serif-italic text-champagne-600 dark:text-champagne-300">Analytical Consultation</span>
         </h2>
         <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-light mt-3">
-          Schedule a 60-minute 1-on-1 strategy audit with a senior mentor. We will review your diagnostic baseline and construct your Cognitive Analytical roadmap.
+          Schedule a 60-minute 1-on-1 strategy audit with founder Sayon Bhattacharya. We will review your diagnostic baseline and construct your Cognitive Analytical roadmap.
         </p>
       </div>
 
       <!-- Scheduler & Enquiry Box -->
       <div class="glass-panel rounded-xl p-5 sm:p-8 border border-champagne-500/30 dark:border-champagne-400/20 shadow-2xl">
         
-        <!-- Toggle Tabs -->
-        <div class="flex justify-center border-b border-slate-200 dark:border-slate-800/80 pb-4 sm:pb-6 mb-6 sm:mb-8 gap-4 sm:gap-6 text-xs font-medium uppercase tracking-wider">
-          <button id="tab-intake-btn" onclick="toggleIntakeMode('form')" class="text-champagne-600 dark:text-champagne-400 border-b border-champagne-600 dark:border-champagne-400 pb-1 font-semibold">
-            1-on-1 Direct Enquiry Form
-          </button>
-          <button id="tab-calendly-btn" onclick="toggleIntakeMode('calendly')" class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 pb-1">
-            Calendly Live Scheduler
-          </button>
-        </div>
+        <form 
+          id="consultation-form" 
+          action="https://api.web3forms.com/submit" 
+          method="POST" 
+          onsubmit="handleIntakeSubmit(event)" 
+          class="space-y-4 sm:space-y-6"
+        >
+          <!-- Web3Forms Access Key -->
+          <input type="hidden" name="access_key" value="a1256dcc-d09a-4918-8269-11afec3ce763" />
+          <input type="hidden" name="subject" value="New Academia Logica LSAT Enquiry" />
+          <input type="hidden" name="from_name" value="Academia Logica Portal" />
 
-        <!-- FORM MODE -->
-        <div id="intake-form-wrap">
-          <form 
-            id="consultation-form" 
-            action="https://api.web3forms.com/submit" 
-            method="POST" 
-            onsubmit="handleIntakeSubmit(event)" 
-            class="space-y-4 sm:space-y-6"
-          >
-            <!-- Web3Forms Access Key -->
-            <input type="hidden" name="access_key" value="a1256dcc-d09a-4918-8269-11afec3ce763" />
-            <input type="hidden" name="subject" value="New Academia Logica LSAT Enquiry" />
-            <input type="hidden" name="from_name" value="Academia Logica Portal" />
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-              <div>
-                <label class="block text-xs text-slate-700 dark:text-slate-300 font-medium mb-1.5 uppercase tracking-wider">Your Full Name *</label>
-                <input type="text" required name="name" id="c-name" placeholder="e.g. Eleanor Vance" class="w-full px-4 py-3 rounded bg-white dark:bg-noir-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 text-xs focus:border-champagne-500 dark:focus:border-champagne-400 focus:outline-none transition-colors" />
-              </div>
-              <div>
-                <label class="block text-xs text-slate-700 dark:text-slate-300 font-medium mb-1.5 uppercase tracking-wider">Email Address *</label>
-                <input type="email" required name="email" id="c-email" placeholder="eleanor@prelaw.edu" class="w-full px-4 py-3 rounded bg-white dark:bg-noir-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 text-xs focus:border-champagne-500 dark:focus:border-champagne-400 focus:outline-none transition-colors" />
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-              <div>
-                <label class="block text-xs text-slate-700 dark:text-slate-300 font-medium mb-1.5 uppercase tracking-wider">WhatsApp / Phone *</label>
-                <input type="tel" required name="phone" id="c-phone" placeholder="(555) 019-2834" class="w-full px-4 py-3 rounded bg-white dark:bg-noir-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 text-xs focus:border-champagne-500 dark:focus:border-champagne-400 focus:outline-none transition-colors" />
-              </div>
-              <div>
-                <label class="block text-xs text-slate-700 dark:text-slate-300 font-medium mb-1.5 uppercase tracking-wider">Current LSAT Score</label>
-                <select name="baseline_score" id="c-baseline" class="w-full px-4 py-3 rounded bg-white dark:bg-noir-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 text-xs focus:border-champagne-500 dark:focus:border-champagne-400">
-                  <option value="140-149">140 - 149 Baseline</option>
-                  <option value="150-157">150 - 157 Baseline</option>
-                  <option value="158-164">158 - 164 Baseline</option>
-                  <option value="165+">165+ Advanced</option>
-                </select>
-              </div>
-              <div>
-                <label class="block text-xs text-slate-700 dark:text-slate-300 font-medium mb-1.5 uppercase tracking-wider">Target Score</label>
-                <select name="target_score" id="c-target" class="w-full px-4 py-3 rounded bg-white dark:bg-noir-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 text-xs focus:border-champagne-500 dark:focus:border-champagne-400">
-                  <option value="168+">168+ (T14 Target)</option>
-                  <option value="172+">172+ (T6 Elite Target)</option>
-                  <option value="175+">175+ Top Percentile</option>
-                </select>
-              </div>
-            </div>
-
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             <div>
-              <label class="block text-xs text-slate-700 dark:text-slate-300 font-medium mb-1.5 uppercase tracking-wider">Selected Program</label>
-              <select name="program" id="c-tier" class="w-full px-4 py-3 rounded bg-white dark:bg-noir-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 text-xs focus:border-champagne-500 dark:focus:border-champagne-400">
-                <option value="Strategy Audit ($99)">1-on-1 Diagnostic Strategy Audit ($99)</option>
-                <option value="4-Week Logic Intensive ($349)">4-Week Logic Intensive ($349)</option>
-                <option value="8-Week T14 Fellowship ($899)">8-Week T14 Admissions Fellowship ($899)</option>
+              <label class="block text-xs text-slate-700 dark:text-slate-300 font-medium mb-1.5 uppercase tracking-wider">Your Full Name *</label>
+              <input type="text" required name="name" id="c-name" placeholder="e.g. Eleanor Vance" class="w-full px-4 py-3 rounded bg-white dark:bg-noir-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 text-xs focus:border-champagne-500 dark:focus:border-champagne-400 focus:outline-none transition-colors" />
+            </div>
+            <div>
+              <label class="block text-xs text-slate-700 dark:text-slate-300 font-medium mb-1.5 uppercase tracking-wider">Email Address *</label>
+              <input type="email" required name="email" id="c-email" placeholder="eleanor@prelaw.edu" class="w-full px-4 py-3 rounded bg-white dark:bg-noir-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 text-xs focus:border-champagne-500 dark:focus:border-champagne-400 focus:outline-none transition-colors" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+            <div>
+              <label class="block text-xs text-slate-700 dark:text-slate-300 font-medium mb-1.5 uppercase tracking-wider">WhatsApp / Phone *</label>
+              <input type="tel" required name="phone" id="c-phone" placeholder="(555) 019-2834" class="w-full px-4 py-3 rounded bg-white dark:bg-noir-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 text-xs focus:border-champagne-500 dark:focus:border-champagne-400 focus:outline-none transition-colors" />
+            </div>
+            <div>
+              <label class="block text-xs text-slate-700 dark:text-slate-300 font-medium mb-1.5 uppercase tracking-wider">Current LSAT Score</label>
+              <select name="baseline_score" id="c-baseline" class="w-full px-4 py-3 rounded bg-white dark:bg-noir-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 text-xs focus:border-champagne-500 dark:focus:border-champagne-400">
+                <option value="140-149">140 - 149 Baseline</option>
+                <option value="150-157">150 - 157 Baseline</option>
+                <option value="158-164">158 - 164 Baseline</option>
+                <option value="165+">165+ Advanced</option>
               </select>
             </div>
-
-            <button type="submit" class="w-full py-4 rounded bg-champagne-500 dark:bg-champagne-400 text-white dark:text-noir-950 font-semibold text-xs tracking-widest uppercase hover:bg-champagne-600 dark:hover:bg-champagne-300 transition-colors shadow-lg flex items-center justify-center">
-              Confirm Strategy Consultation Request
-            </button>
-
-            <p class="text-[11px] text-slate-600 dark:text-slate-400 text-center font-light">
-              🔒 Your information remains private. A senior mentor will contact you within 4 hours to coordinate your session.
-            </p>
-          </form>
-
-          <div id="consultation-success" class="hidden text-center py-10 space-y-4">
-            <div class="w-12 h-12 rounded-full bg-champagne-500/20 text-champagne-600 dark:text-champagne-400 flex items-center justify-center mx-auto border border-champagne-500/40">
-              <i data-lucide="check" class="w-6 h-6"></i>
+            <div>
+              <label class="block text-xs text-slate-700 dark:text-slate-300 font-medium mb-1.5 uppercase tracking-wider">Target Score</label>
+              <select name="target_score" id="c-target" class="w-full px-4 py-3 rounded bg-white dark:bg-noir-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 text-xs focus:border-champagne-500 dark:focus:border-champagne-400">
+                <option value="168+">168+ (T14 Target)</option>
+                <option value="172+">172+ (T6 Elite Target)</option>
+                <option value="175+">175+ Top Percentile</option>
+              </select>
             </div>
-            <h3 class="font-serif text-2xl text-slate-900 dark:text-slate-100">Consultation Request Received</h3>
-            <p class="text-xs text-slate-700 dark:text-slate-300 max-w-md mx-auto font-light">
-              Thank you. Your enquiry has been recorded. A senior mentor will confirm your 60-minute 1-on-1 strategy audit shortly.
-            </p>
           </div>
-        </div>
 
-        <!-- CALENDLY EMBEDDED MODE -->
-        <div id="intake-calendly-wrap" class="hidden">
-          <div 
-            class="calendly-inline-widget rounded-lg overflow-hidden border border-slate-300 dark:border-slate-800 min-h-[650px] w-full" 
-            data-url="https://calendly.com"
-            style="min-width:320px;height:650px;"
-          ></div>
-        </div>
+          <div>
+            <label class="block text-xs text-slate-700 dark:text-slate-300 font-medium mb-1.5 uppercase tracking-wider">Selected Program</label>
+            <select name="program" id="c-tier" class="w-full px-4 py-3 rounded bg-white dark:bg-noir-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 text-xs focus:border-champagne-500 dark:focus:border-champagne-400">
+              <option value="Strategy Audit ($99)">1-on-1 Diagnostic Strategy Audit ($99)</option>
+              <option value="4-Week Logic Intensive ($349)">4-Week Logic Intensive ($349)</option>
+              <option value="8-Week T14 Fellowship ($899)">8-Week T14 Admissions Fellowship ($899)</option>
+            </select>
+          </div>
+
+          <button type="submit" class="w-full py-4 rounded bg-champagne-500 dark:bg-champagne-400 text-white dark:text-noir-950 font-semibold text-xs tracking-widest uppercase hover:bg-champagne-600 dark:hover:bg-champagne-300 transition-colors shadow-lg flex items-center justify-center">
+            Confirm Strategy Consultation Request
+          </button>
+
+          <p class="text-[11px] text-slate-600 dark:text-slate-400 text-center font-light">
+            🔒 Your information remains private. Sayon Bhattacharya will contact you within 4 hours to coordinate your session.
+          </p>
+        </form>
 
       </div>
 
@@ -670,25 +642,6 @@
         menu.classList.add('hidden');
         openIcon.classList.remove('hidden');
         closeIcon.classList.add('hidden');
-      }
-    }
-
-    function toggleIntakeMode(mode) {
-      const formWrap = document.getElementById('intake-form-wrap');
-      const calendlyWrap = document.getElementById('intake-calendly-wrap');
-      const formBtn = document.getElementById('tab-intake-btn');
-      const calBtn = document.getElementById('tab-calendly-btn');
-
-      if (mode === 'form') {
-        formWrap.classList.remove('hidden');
-        calendlyWrap.classList.add('hidden');
-        formBtn.className = 'text-champagne-600 dark:text-champagne-400 border-b border-champagne-600 dark:border-champagne-400 pb-1 font-semibold';
-        calBtn.className = 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 pb-1';
-      } else {
-        formWrap.classList.add('hidden');
-        calendlyWrap.classList.remove('hidden');
-        calBtn.className = 'text-champagne-600 dark:text-champagne-400 border-b border-champagne-600 dark:border-champagne-400 pb-1 font-semibold';
-        formBtn.className = 'text-slate-500 dark:text-slate-400 hover:text-slate-200 pb-1';
       }
     }
 
