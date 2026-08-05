@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Academia Logica | Private LSAT Mentorship & Cognitive Prep</title>
+  <meta name="description" content="Academia Logica provides bespoke 1-on-1 LSAT mentorship. Over 12+ cohorts, $500k+ in merit scholarships secured for T14 law schools." />
+  
+  <!-- Custom Classy SVG Favicon (Intertwined Golden AL Crest) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230b0f17'/><circle cx='50' cy='50' r='40' fill='none' stroke='%23d4af37' stroke-width='2' stroke-opacity='0.6'/><circle cx='50' cy='50' r='36' fill='none' stroke='%23d4af37' stroke-width='1' stroke-dasharray='3 3' stroke-opacity='0.4'/><path d='M50 20 L28 72 H36 L43 54 H57 L64 72 H72 Z M46 47 H54 L50 35 Z' fill='%23d4af37'/><path d='M44 72 H66 V66 H50 V48 H44 Z' fill='%23f7f2e9' opacity='0.85'/></svg>" />
+
+  <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Calendly Official SDK JS -->
+  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Cormorant Garamond', 'serif'],
+          },
+          colors: {
+            champagne: {
+              100: '#fdfbf7',
+              200: '#f7f2e9',
+              300: '#e8dcbe',
+              400: '#d4af37',
+              500: '#c5a880',
+              600: '#a3845b',
+            },
+            noir: {
+              900: '#0b0f17',
+              950: '#06080d',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .font-serif-italic {
+        font-family: 'Cormorant Garamond', serif;
+        font-style: italic;
+      }
+      
+      /* Dark Theme Glass */
+      .dark .glass-panel {
+        background: rgba(15, 23, 36, 0.75);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(212, 175, 55, 0.18);
+      }
+      .dark .glass-panel-subtle {
+        background: rgba(11, 15, 23, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+      }
+
+      /* Light Theme Glass */
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(197, 168, 128, 0.3);
+        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+      }
+      .glass-panel-subtle {
+        background: rgba(248, 250, 252, 0.9);
+        border: 1px solid rgba(226, 232, 240, 0.8);
+      }
+    }
+  </style>
+
+  <!-- Detect OS Dark/Light preference -->
+  <script>
+    (function() {
+      const storedTheme = localStorage.getItem('theme');
+      if (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+</head>
+<body class="bg-champagne-100 dark:bg-noir-950 text-slate-800 dark:text-slate-200 antialiased selection:bg-champagne-400 selection:text-noir-950 font-sans transition-colors duration-300 overflow-x-hidden">
+
+  <!-- Top Announcement Banner -->
+  <div class="bg-champagne-200 dark:bg-noir-900 border-b border-champagne-500/20 dark:border-champagne-400/10 py-2.5 px-4 text-center text-[11px] sm:text-xs tracking-wider uppercase font-medium text-slate-700 dark:text-slate-400 transition-colors flex items-center justify-center gap-2">
+    <span class="text-champagne-600 dark:text-champagne-400 font-semibold">Academia Logica</span>
+    <span class="hidden sm:inline">•</span>
+    <span class="hidden sm:inline">12+ Cohorts Graduated</span>
+    <span>•</span>
+    <span class="text-slate-900 dark:text-slate-200 font-semibold">$500,000+ Scholarships Secured</span>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header class="sticky top-0 z-40 w-full glass-panel border-b border-champagne-500/20 dark:border-champagne-400/10 bg-champagne-100/90 dark:bg-noir-950/90 backdrop-blur-xl transition-colors">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group shrink-0 pr-4">
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-noir-950 border border-champagne-500/40 dark:border-champagne-400/40 flex items-center justify-center p-1 shadow-md group-hover:border-champagne-400 transition-all shrink-0">
+          <svg viewBox="0 0 100 100" class="w-full h-full text-champagne-400">
+            <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="2" stroke-opacity="0.8"/>
+            <circle cx="50" cy="50" r="39" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2 3" stroke-opacity="0.4"/>
+            <path d="M 28 32 L 72 32 M 50 20 L 50 32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M 50 24 L 30 76 H 38 L 44 58 H 56 L 62 76 H 70 Z M 47 50 H 53 L 50 38 Z" fill="currentColor"/>
+            <path d="M 44 76 H 68 V 70 H 52 V 52 H 44 Z" fill="#f7f2e9" opacity="0.85"/>
+          </svg>
+        </div>
+        <div>
+          <span class="font-serif text-xl sm:text-2xl font-semibold text-slate-900 dark:text-slate-100 tracking-wider block leading-tight whitespace-nowrap">
+            ACADEMIA <span class="text-champagne-600 dark:text-champagne-400">LOGICA</span>
+          </span>
+          <span class="text-[8px] sm:text-[9px] text-slate-500 dark:text-slate-400 tracking-widest uppercase block font-sans whitespace-nowrap">Cognitive Analytical Prep</span>
+        </div>
+      </a>
+
+      <!-- Center Desktop Navigation with proper margins on both sides -->
+      <nav class="hidden lg:flex items-center gap-6 xl:gap-8 text-[11px] xl:text-xs font-medium tracking-wider uppercase text-slate-700 dark:text-slate-300 mx-auto">
+        <a href="#methodology" class="hover:text-champagne-600 dark:hover:text-champagne-400 transition-colors whitespace-nowrap">Methodology</a>
+        <a href="#scholarships" class="hover:text-champagne-600 dark:hover:text-champagne-400 transition-colors whitespace-nowrap">Scholarship Impact</a>
+        <a href="#calculator" class="hover:text-champagne-600 dark:hover:text-champagne-400 transition-colors whitespace-nowrap">Admissions Horizon</a>
+        <a href="#offerings" class="hover:text-champagne-600 dark:hover:text-champagne-400 transition-colors whitespace-nowrap">Offerings</a>
+      </nav>
+
+      <!-- Right Action Controls with isolated left margin -->
+      <div class="flex items-center gap-3 sm:gap-4 shrink-0 pl-4 sm:pl-6">
+        
+        <!-- Dark/Light Theme Toggle Button -->
+        <button 
+          onclick="toggleThemeManual()" 
+          aria-label="Toggle Theme"
+          title="Toggle Light/Dark Mode"
+          class="p-2 text-slate-600 dark:text-slate-300 hover:text-champagne-600 dark:hover:text-champagne-400 rounded-md bg-champagne-200/60 dark:bg-noir-900 border border-champagne-500/20 dark:border-slate-800 transition-colors flex items-center justify-center"
+        >
+          <i data-lucide="sun" class="w-4 h-4 hidden dark:block text-amber-400"></i>
+          <i data-lucide="moon" class="w-4 h-4 block dark:hidden text-slate-700"></i>
+        </button>
+
+        <a href="#schedule" class="hidden sm:flex px-4 py-2 sm:px-5 sm:py-2.5 rounded-md bg-champagne-500/10 dark:bg-champagne-400/10 border border-champagne-500/30 dark:border-champagne-400/30 text-champagne-600 dark:text-champagne-300 font-medium text-xs tracking-wider uppercase hover:bg-champagne-500/20 dark:hover:bg-champagne-400/20 transition-all flex items-center gap-2 whitespace-nowrap">
+          <span>Request Consultation</span>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button onclick="toggleMobileMenu()" aria-label="Toggle Navigation" class="lg:hidden p-2 text-slate-700 dark:text-slate-300 hover:text-champagne-500 dark:hover:text-champagne-400 rounded-md bg-champagne-200/60 dark:bg-noir-900 border border-slate-300 dark:border-slate-800 flex items-center justify-center">
+          <i data-lucide="menu" id="menu-icon-open" class="w-5 h-5"></i>
+          <i data-lucide="x" id="menu-icon-close" class="w-5 h-5 hidden"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-champagne-100 dark:bg-noir-950 border-b border-slate-300 dark:border-slate-800 px-6 py-6 space-y-4">
+      <a href="#methodology" onclick="toggleMobileMenu()" class="block text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-champagne-600 dark:hover:text-champagne-400 uppercase tracking-wider">Methodology</a>
+      <a href="#scholarships" onclick="toggleMobileMenu()" class="block text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-champagne-600 dark:hover:text-champagne-400 uppercase tracking-wider">Scholarship Impact</a>
+      <a href="#calculator" onclick="toggleMobileMenu()" class="block text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-champagne-600 dark:hover:text-champagne-400 uppercase tracking-wider">Admissions Horizon</a>
+      <a href="#offerings" onclick="toggleMobileMenu()" class="block text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-champagne-600 dark:hover:text-champagne-400 uppercase tracking-wider">Offerings</a>
+      <a href="#schedule" onclick="toggleMobileMenu()" class="block w-full text-center py-3 rounded bg-champagne-500 dark:bg-champagne-400 text-slate-950 dark:text-noir-950 font-semibold text-xs tracking-wider uppercase">
+        Request Consultation
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative pt-12 pb-20 sm:pt-20 sm:pb-28 lg:pt-28 lg:pb-36 overflow-hidden">
+    <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[600px] lg:w-[700px] h-[320px] sm:h-[600px] lg:h-[700px] bg-champagne-400/10 dark:bg-champagne-400/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center flex flex-col items-center">
+      
+      <span class="text-[10px] sm:text-xs font-semibold text-champagne-600 dark:text-champagne-400 tracking-[0.2em] sm:tracking-[0.25em] uppercase block mb-4">
+        12+ Cohorts Graduated • $500,000+ Scholarships Secured
+      </span>
+
+      <h1 class="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-slate-900 dark:text-slate-100 tracking-tight leading-[1.15] mb-6 sm:mb-8 max-w-4xl">
+        Logic Is Not Memorized. <br />
+        <span class="font-serif-italic text-champagne-600 dark:text-champagne-300 font-light">It Is Mastered 1-on-1.</span>
+      </h1>
+
+      <p class="text-sm sm:text-base md:text-lg text-slate-700 dark:text-slate-300 font-light leading-relaxed mb-8 sm:mb-10 max-w-2xl">
+        Grounded in modern cognitive science and formal modal logic, <strong class="text-slate-900 dark:text-slate-100 font-normal">Academia Logica</strong> pairs serious candidates with private mentors to re-engineer reasoning habits, break 170+ score ceilings, and secure major T14 merit grants.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 w-full sm:w-auto">
+        <a href="#schedule" class="w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 rounded-md bg-champagne-500 dark:bg-champagne-400 text-white dark:text-noir-950 font-semibold text-xs tracking-widest uppercase hover:bg-champagne-600 dark:hover:bg-champagne-300 transition-colors shadow-lg shadow-champagne-500/10 flex items-center justify-center gap-2">
+          <span>Schedule Strategy Audit ($99)</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+
+        <a href="#methodology" class="w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 rounded-md glass-panel-subtle text-slate-800 dark:text-slate-200 font-medium text-xs tracking-widest uppercase hover:border-champagne-500/40 transition-all flex items-center justify-center gap-2">
+          <span>Explore Cognitive Methodology</span>
+        </a>
+      </div>
+
+      <!-- Proven Performance Metrics Strip -->
+      <div class="w-full mt-14 sm:mt-20 pt-8 sm:pt-10 border-t border-slate-300 dark:border-slate-800/80 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
+        <div class="flex flex-col items-center justify-center">
+          <span class="font-serif text-2xl sm:text-3xl font-normal text-champagne-600 dark:text-champagne-300 block">12+</span>
+          <span class="text-[10px] sm:text-[11px] text-slate-600 dark:text-slate-400 tracking-wider uppercase font-medium mt-1 block">Successful Cohorts</span>
+        </div>
+        <div class="flex flex-col items-center justify-center">
+          <span class="font-serif text-2xl sm:text-3xl font-normal text-champagne-600 dark:text-champagne-300 block">$500,000+</span>
+          <span class="text-[10px] sm:text-[11px] text-slate-600 dark:text-slate-400 tracking-wider uppercase font-medium mt-1 block">Scholarships Procured</span>
+        </div>
+        <div class="flex flex-col items-center justify-center">
+          <span class="font-serif text-2xl sm:text-3xl font-normal text-champagne-600 dark:text-champagne-300 block">+14.2 Points</span>
+          <span class="text-[10px] sm:text-[11px] text-slate-600 dark:text-slate-400 tracking-wider uppercase font-medium mt-1 block">Average Score Boost</span>
+        </div>
+        <div class="flex flex-col items-center justify-center">
+          <span class="font-serif text-2xl sm:text-3xl font-normal text-champagne-600 dark:text-champagne-300 block">94%</span>
+          <span class="text-[10px] sm:text-[11px] text-slate-600 dark:text-slate-400 tracking-wider uppercase font-medium mt-1 block">T14 Acceptance Rate</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 1: Scientific Methodology -->
+  <section id="methodology" class="py-16 sm:py-24 bg-champagne-200/40 dark:bg-noir-900 border-y border-slate-300 dark:border-slate-800/60 relative transition-colors">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        <span class="text-xs font-semibold text-champagne-600 dark:text-champagne-400 tracking-widest uppercase block mb-2">Scientific & Modern Standards</span>
+        <h2 class="font-serif text-2xl sm:text-4xl text-slate-900 dark:text-slate-100 font-normal">
+          The Cognitive <span class="font-serif-italic text-champagne-600 dark:text-champagne-300">Analytical Framework</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-light mt-3 leading-relaxed">
+          Developed across 12+ student cohorts, our proprietary methodology synthesizes modern cognitive psychology, formal conditional syntax, and targeted feedback loops to eliminate subconscious reasoning errors.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+        
+        <div class="glass-panel p-6 sm:p-8 rounded-xl border border-slate-300 dark:border-slate-800 space-y-3 sm:space-y-4 flex flex-col justify-between h-full">
+          <div>
+            <div class="w-10 h-10 rounded bg-white dark:bg-noir-950 border border-champagne-500/30 dark:border-champagne-400/30 flex items-center justify-center text-champagne-600 dark:text-champagne-400 font-serif text-lg mb-4">
+              I
+            </div>
+            <h3 class="font-serif text-xl sm:text-2xl text-slate-900 dark:text-slate-100 font-normal mb-2">Sub-Conscious Bias Diagnostics</h3>
+            <p class="text-xs text-slate-700 dark:text-slate-300 font-light leading-relaxed">
+              Generic courses test speed; we test cognitive habits. We isolate subconscious reasoning biases—such as confusing necessary conditions for sufficient ones—so you recognize distractor traps before reading options.
+            </p>
+          </div>
+        </div>
+
+        <div class="glass-panel p-6 sm:p-8 rounded-xl border border-champagne-500/40 dark:border-champagne-400/30 bg-white/80 dark:bg-noir-950/60 space-y-3 sm:space-y-4 flex flex-col justify-between h-full">
+          <div>
+            <div class="w-10 h-10 rounded bg-white dark:bg-noir-950 border border-champagne-500/50 dark:border-champagne-400/50 flex items-center justify-center text-champagne-600 dark:text-champagne-300 font-serif text-lg mb-4">
+              II
+            </div>
+            <h3 class="font-serif text-xl sm:text-2xl text-slate-900 dark:text-slate-100 font-normal mb-2">Formal Syntax Mapping</h3>
+            <p class="text-xs text-slate-700 dark:text-slate-300 font-light leading-relaxed">
+              We translate dense Logical Reasoning stimuli into mathematical conditional statements. By mapping argument premises like formal proofs, guessing is replaced by absolute logical certainty.
+            </p>
+          </div>
+        </div>
+
+        <div class="glass-panel p-6 sm:p-8 rounded-xl border border-slate-300 dark:border-slate-800 space-y-3 sm:space-y-4 flex flex-col justify-between h-full">
+          <div>
+            <div class="w-10 h-10 rounded bg-white dark:bg-noir-950 border border-champagne-500/30 dark:border-champagne-400/30 flex items-center justify-center text-champagne-600 dark:text-champagne-400 font-serif text-lg mb-4">
+              III
+            </div>
+            <h3 class="font-serif text-xl sm:text-2xl text-slate-900 dark:text-slate-100 font-normal mb-2">Async Video Error Feedback</h3>
+            <p class="text-xs text-slate-700 dark:text-slate-300 font-light leading-relaxed">
+              Every missed question is submitted to your mentor. Within 24 hours, you receive a custom 5-minute video walkthrough dissecting your precise scratchpad thought process and correcting the misstep.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 2: Proven Outcomes & $500k+ Scholarship Impact -->
+  <section id="scholarships" class="py-16 sm:py-24 bg-champagne-100 dark:bg-noir-950 relative transition-colors">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      
+      <div class="glass-panel p-6 sm:p-12 rounded-2xl border border-champagne-500/30 dark:border-champagne-400/30 relative overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-6 space-y-4">
+            <span class="text-xs font-semibold text-champagne-600 dark:text-champagne-400 tracking-widest uppercase block">Tangible Financial Outcomes</span>
+            <h2 class="font-serif text-2xl sm:text-4xl text-slate-900 dark:text-slate-100 font-normal leading-snug">
+              Over <span class="font-serif-italic text-champagne-600 dark:text-champagne-300">$500,000+ Secured</span> <br />
+              in Law School Merit Grants.
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-light leading-relaxed">
+              A higher LSAT score isn't just about admissions—it is the single highest-ROI financial investment of your career. Across 12+ cohorts, Academia Logica candidates have leveraged score jumps to secure full-ride and half-tuition merit scholarships at T14 institutions including Columbia, NYU, UVA, and Georgetown.
+            </p>
+          </div>
+
+          <div class="lg:col-span-6 glass-panel-subtle p-5 sm:p-6 rounded-xl border border-slate-300 dark:border-slate-800 space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3 gap-4">
+              <span class="text-xs text-slate-600 dark:text-slate-400 font-medium">Total Scholarships Procured</span>
+              <span class="font-serif text-lg sm:text-xl text-champagne-600 dark:text-champagne-300 font-normal whitespace-nowrap">$500,000+</span>
+            </div>
+            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3 gap-4">
+              <span class="text-xs text-slate-600 dark:text-slate-400 font-medium">Cohort Graduation Count</span>
+              <span class="font-serif text-lg sm:text-xl text-slate-900 dark:text-slate-100 font-normal whitespace-nowrap">12+ Batches</span>
+            </div>
+            <div class="flex items-center justify-between gap-4">
+              <span class="text-xs text-slate-600 dark:text-slate-400 font-medium">Avg Scholarship / Student</span>
+              <span class="font-serif text-base sm:text-lg text-champagne-600 dark:text-champagne-400 font-normal whitespace-nowrap">$65,000 – $120,000</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 3: Direct Intake & Consultation Scheduler -->
+  <section id="schedule" class="py-16 sm:py-24 bg-champagne-200/40 dark:bg-noir-900 border-t border-slate-300 dark:border-slate-800/60 relative transition-colors">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+        <span class="text-xs font-semibold text-champagne-600 dark:text-champagne-400 tracking-widest uppercase block mb-2">Private Intake</span>
+        <h2 class="font-serif text-2xl sm:text-4xl text-slate-900 dark:text-slate-100 font-normal">
+          Begin Your <span class="font-serif-italic text-champagne-600 dark:text-champagne-300">Analytical Consultation</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-light mt-3">
+          Schedule a 60-minute 1-on-1 strategy audit with a senior mentor. We will review your diagnostic baseline and construct your Cognitive Analytical roadmap.
+        </p>
+      </div>
+
+      <!-- Scheduler & Enquiry Box -->
+      <div class="glass-panel rounded-xl p-5 sm:p-8 border border-champagne-500/30 dark:border-champagne-400/20 shadow-2xl">
+        
+        <!-- Toggle Tabs -->
+        <div class="flex justify-center border-b border-slate-200 dark:border-slate-800/80 pb-4 sm:pb-6 mb-6 sm:mb-8 gap-4 sm:gap-6 text-xs font-medium uppercase tracking-wider">
+          <button id="tab-intake-btn" onclick="toggleIntakeMode('form')" class="text-champagne-600 dark:text-champagne-400 border-b border-champagne-600 dark:border-champagne-400 pb-1 font-semibold">
+            1-on-1 Direct Enquiry Form
+          </button>
+          <button id="tab-calendly-btn" onclick="toggleIntakeMode('calendly')" class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 pb-1">
+            Calendly Live Scheduler
+          </button>
+        </div>
+
+        <!-- FORM MODE -->
+        <div id="intake-form-wrap">
+          <form 
+            id="consultation-form" 
+            action="https://api.web3forms.com/submit" 
+            method="POST" 
+            onsubmit="handleIntakeSubmit(event)" 
+            class="space-y-4 sm:space-y-6"
+          >
+            <!-- Web3Forms Access Key -->
+            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+            <input type="hidden" name="subject" value="New Academia Logica LSAT Enquiry" />
+            <input type="hidden" name="from_name" value="Academia Logica Portal" />
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+              <div>
+                <label class="block text-xs text-slate-700 dark:text-slate-300 font-medium mb-1.5 uppercase tracking-wider">Your Full Name *</label>
+                <input type="text" required name="name" id="c-name" placeholder="e.g. Eleanor Vance" class="w-full px-4 py-3 rounded bg-white dark:bg-noir-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 text-xs focus:border-champagne-500 dark:focus:border-champagne-400 focus:outline-none transition-colors" />
+              </div>
+              <div>
+                <label class="block text-xs text-slate-700 dark:text-slate-300 font-medium mb-1.5 uppercase tracking-wider">Email Address *</label>
+                <input type="email" required name="email" id="c-email" placeholder="eleanor@prelaw.edu" class="w-full px-4 py-3 rounded bg-white dark:bg-noir-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 text-xs focus:border-champagne-500 dark:focus:border-champagne-400 focus:outline-none transition-colors" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+              <div>
+                <label class="block text-xs text-slate-700 dark:text-slate-300 font-medium mb-1.5 uppercase tracking-wider">WhatsApp / Phone *</label>
+                <input type="tel" required name="phone" id="c-phone" placeholder="(555) 019-2834" class="w-full px-4 py-3 rounded bg-white dark:bg-noir-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 text-xs focus:border-champagne-500 dark:focus:border-champagne-400 focus:outline-none transition-colors" />
+              </div>
+              <div>
+                <label class="block text-xs text-slate-700 dark:text-slate-300 font-medium mb-1.5 uppercase tracking-wider">Current LSAT Score</label>
+                <select name="baseline_score" id="c-baseline" class="w-full px-4 py-3 rounded bg-white dark:bg-noir-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 text-xs focus:border-champagne-500 dark:focus:border-champagne-400">
+                  <option value="140-149">140 - 149 Baseline</option>
+                  <option value="150-157">150 - 157 Baseline</option>
+                  <option value="158-164">158 - 164 Baseline</option>
+                  <option value="165+">165+ Advanced</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs text-slate-700 dark:text-slate-300 font-medium mb-1.5 uppercase tracking-wider">Target Score</label>
+                <select name="target_score" id="c-target" class="w-full px-4 py-3 rounded bg-white dark:bg-noir-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 text-xs focus:border-champagne-500 dark:focus:border-champagne-400">
+                  <option value="168+">168+ (T14 Target)</option>
+                  <option value="172+">172+ (T6 Elite Target)</option>
+                  <option value="175+">175+ Top Percentile</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs text-slate-700 dark:text-slate-300 font-medium mb-1.5 uppercase tracking-wider">Selected Program</label>
+              <select name="program" id="c-tier" class="w-full px-4 py-3 rounded bg-white dark:bg-noir-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 text-xs focus:border-champagne-500 dark:focus:border-champagne-400">
+                <option value="Strategy Audit ($99)">1-on-1 Diagnostic Strategy Audit ($99)</option>
+                <option value="4-Week Logic Intensive ($349)">4-Week Logic Intensive ($349)</option>
+                <option value="8-Week T14 Fellowship ($899)">8-Week T14 Admissions Fellowship ($899)</option>
+              </select>
+            </div>
+
+            <button type="submit" class="w-full py-4 rounded bg-champagne-500 dark:bg-champagne-400 text-white dark:text-noir-950 font-semibold text-xs tracking-widest uppercase hover:bg-champagne-600 dark:hover:bg-champagne-300 transition-colors shadow-lg flex items-center justify-center">
+              Confirm Strategy Consultation Request
+            </button>
+
+            <p class="text-[11px] text-slate-600 dark:text-slate-400 text-center font-light">
+              🔒 Your information remains private. A senior mentor will contact you within 4 hours to coordinate your session.
+            </p>
+          </form>
+
+          <div id="consultation-success" class="hidden text-center py-10 space-y-4">
+            <div class="w-12 h-12 rounded-full bg-champagne-500/20 text-champagne-600 dark:text-champagne-400 flex items-center justify-center mx-auto border border-champagne-500/40">
+              <i data-lucide="check" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-serif text-2xl text-slate-900 dark:text-slate-100">Consultation Request Received</h3>
+            <p class="text-xs text-slate-700 dark:text-slate-300 max-w-md mx-auto font-light">
+              Thank you. Your enquiry has been recorded. A senior mentor will confirm your 60-minute 1-on-1 strategy audit shortly.
+            </p>
+          </div>
+        </div>
+
+        <!-- CALENDLY EMBEDDED MODE -->
+        <div id="intake-calendly-wrap" class="hidden">
+          <div 
+            class="calendly-inline-widget rounded-lg overflow-hidden border border-slate-300 dark:border-slate-800 min-h-[650px] w-full" 
+            data-url="https://calendly.com"
+            style="min-width:320px;height:650px;"
+          ></div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 4: Admissions Horizon Calculator -->
+  <section id="calculator" class="py-16 sm:py-24 bg-champagne-100 dark:bg-noir-950 border-t border-slate-300 dark:border-slate-800/60 transition-colors">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+        <span class="text-xs font-semibold text-champagne-600 dark:text-champagne-400 tracking-widest uppercase block mb-2">Law School Horizon</span>
+        <h2 class="font-serif text-2xl sm:text-4xl text-slate-900 dark:text-slate-100 font-normal">
+          The Quantitative Impact of <span class="font-serif-italic text-champagne-600 dark:text-champagne-300">1-on-1 Mentorship</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+        <!-- Sliders -->
+        <div class="lg:col-span-6 glass-panel p-6 sm:p-8 rounded-xl border border-slate-300 dark:border-slate-800 space-y-6 sm:space-y-8 flex flex-col justify-between h-full">
+          <div class="space-y-6 sm:space-y-8">
+            <div>
+              <div class="flex justify-between items-center mb-3 text-xs">
+                <span class="text-slate-700 dark:text-slate-300 uppercase font-medium">Current Baseline Score</span>
+                <span id="c-score-num" class="font-serif text-xl sm:text-2xl text-slate-900 dark:text-slate-100">148</span>
+              </div>
+              <input type="range" min="135" max="170" value="148" id="slider-cur" oninput="recalcHorizon()" class="w-full h-1.5 bg-slate-300 dark:bg-slate-800 rounded accent-champagne-500 dark:accent-champagne-400 cursor-pointer" />
+            </div>
+
+            <div>
+              <div class="flex justify-between items-center mb-3 text-xs">
+                <span class="text-slate-700 dark:text-slate-300 uppercase font-medium">Target Score With ACALO</span>
+                <span id="t-score-num" class="font-serif text-xl sm:text-2xl text-champagne-600 dark:text-champagne-400">168</span>
+              </div>
+              <input type="range" min="150" max="180" value="168" id="slider-tar" oninput="recalcHorizon()" class="w-full h-1.5 bg-slate-300 dark:bg-slate-800 rounded accent-champagne-500 dark:accent-champagne-400 cursor-pointer" />
+            </div>
+          </div>
+
+          <div class="p-4 rounded bg-white dark:bg-noir-900 border border-slate-200 dark:border-slate-800 flex items-center justify-between mt-4">
+            <span class="text-xs text-slate-600 dark:text-slate-400 uppercase font-medium">Projected Boost</span>
+            <span id="boost-num" class="font-serif text-lg sm:text-xl text-champagne-600 dark:text-champagne-300">+20 Point Improvement</span>
+          </div>
+        </div>
+
+        <!-- Output Card -->
+        <div class="lg:col-span-6 glass-panel p-6 sm:p-8 rounded-xl border border-champagne-500/30 dark:border-champagne-400/20 space-y-6 flex flex-col justify-between h-full">
+          <div>
+            <div class="border-b border-slate-200 dark:border-slate-800 pb-4 mb-4">
+              <span class="text-[10px] sm:text-[11px] text-slate-600 dark:text-slate-400 tracking-wider uppercase font-medium block">Admissions Tier Target</span>
+              <h3 id="out-tier" class="font-serif text-xl sm:text-2xl text-champagne-600 dark:text-champagne-300 mt-1">T14 Top Tier (Penn, UVA, Berkeley, Michigan, Duke)</h3>
+            </div>
+
+            <div class="space-y-4">
+              <div>
+                <span class="text-xs text-slate-600 dark:text-slate-400 uppercase font-medium block">Merit Scholarship Potential</span>
+                <p id="out-grant" class="text-xs sm:text-sm text-slate-900 dark:text-slate-100 font-medium mt-0.5">$100,000 - $140,000 Institutional Grants</p>
+              </div>
+              <div>
+                <span class="text-xs text-slate-600 dark:text-slate-400 uppercase font-medium block">BigLaw Starting Career Horizon</span>
+                <p id="out-salary" class="text-xs sm:text-sm text-slate-900 dark:text-slate-100 font-medium mt-0.5">$225,000 / year starting compensation</p>
+              </div>
+            </div>
+          </div>
+
+          <a href="#schedule" class="w-full py-3.5 rounded bg-champagne-500/10 dark:bg-champagne-400/10 border border-champagne-500/30 dark:border-champagne-400/30 text-champagne-700 dark:text-champagne-300 text-xs uppercase tracking-wider font-semibold text-center block hover:bg-champagne-500/20 transition-all mt-4">
+            Plan Your 1-on-1 Mentorship Roadmap
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 5: Offerings -->
+  <section id="offerings" class="py-16 sm:py-24 bg-champagne-200/40 dark:bg-noir-900 border-t border-slate-300 dark:border-slate-800/60 transition-colors">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+        <span class="text-xs font-semibold text-champagne-600 dark:text-champagne-400 tracking-widest uppercase block mb-2">Tailored Mentorship</span>
+        <h2 class="font-serif text-2xl sm:text-4xl text-slate-900 dark:text-slate-100 font-normal">
+          Private Mentorship <span class="font-serif-italic text-champagne-600 dark:text-champagne-300">Offerings</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+        
+        <!-- Audit -->
+        <div class="glass-card p-6 sm:p-8 rounded-xl border border-slate-300 dark:border-slate-800 flex flex-col justify-between space-y-6 h-full">
+          <div>
+            <span class="text-[10px] text-champagne-600 dark:text-champagne-400 uppercase font-semibold tracking-widest block">Entry Consultation</span>
+            <h3 class="font-serif text-xl sm:text-2xl text-slate-900 dark:text-slate-100 mt-1">Strategy Audit</h3>
+            <div class="my-4 pb-4 border-b border-slate-200 dark:border-slate-800">
+              <span class="font-serif text-2xl sm:text-3xl text-slate-900 dark:text-slate-100">$99</span>
+              <span class="text-xs text-slate-600 dark:text-slate-400">/ 60-min session</span>
+            </div>
+            <ul class="space-y-3 text-xs text-slate-700 dark:text-slate-300 font-light">
+              <li>• 60-Minute 1-on-1 Live Strategy Audit</li>
+              <li>• Deep-Dive Diagnostic Error Analysis</li>
+              <li>• Custom Cognitive Study Blueprint</li>
+            </ul>
+          </div>
+          <a href="#schedule" class="w-full py-3 rounded bg-white dark:bg-noir-950 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-900 dark:text-slate-200 text-xs tracking-wider uppercase font-medium border border-slate-300 dark:border-slate-700 text-center block transition-colors">
+            Request Audit
+          </a>
+        </div>
+
+        <!-- Intensive -->
+        <div class="glass-card p-6 sm:p-8 rounded-xl border border-champagne-500/40 dark:border-champagne-400/40 bg-white/90 dark:bg-noir-950/90 shadow-xl flex flex-col justify-between space-y-6 h-full relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded bg-champagne-500 dark:bg-champagne-400 text-white dark:text-noir-950 font-bold text-[10px] uppercase tracking-widest">
+            Core Program
+          </div>
+          <div>
+            <span class="text-[10px] text-champagne-600 dark:text-champagne-400 uppercase font-semibold tracking-widest block">Foundation</span>
+            <h3 class="font-serif text-xl sm:text-2xl text-slate-900 dark:text-slate-100 mt-1">4-Week Logic Intensive</h3>
+            <div class="my-4 pb-4 border-b border-slate-200 dark:border-slate-800">
+              <span class="font-serif text-2xl sm:text-3xl text-slate-900 dark:text-slate-100">$349</span>
+              <span class="text-xs text-slate-600 dark:text-slate-400">/ 4-week program</span>
+            </div>
+            <ul class="space-y-3 text-xs text-slate-700 dark:text-slate-300 font-light">
+              <li>• 4 Live 1-on-1 Mentorship Sessions</li>
+              <li>• 24-Hour Async Video Error Auditing</li>
+              <li>• Tailored Daily Drill Schedules</li>
+              <li>• Direct Mentor WhatsApp & Slack Access</li>
+            </ul>
+          </div>
+          <a href="#schedule" class="w-full py-3 rounded bg-champagne-500 dark:bg-champagne-400 text-white dark:text-noir-950 font-semibold text-xs tracking-wider uppercase text-center block hover:bg-champagne-600 dark:hover:bg-champagne-300 transition-colors">
+            Enroll in 4-Week Program
+          </a>
+        </div>
+
+        <!-- Fellowship -->
+        <div class="glass-card p-6 sm:p-8 rounded-xl border border-slate-300 dark:border-slate-800 flex flex-col justify-between space-y-6 h-full">
+          <div>
+            <span class="text-[10px] text-champagne-600 dark:text-champagne-400 uppercase font-semibold tracking-widest block">Full Admissions</span>
+            <h3 class="font-serif text-xl sm:text-2xl text-slate-900 dark:text-slate-100 mt-1">8-Week T14 Fellowship</h3>
+            <div class="my-4 pb-4 border-b border-slate-200 dark:border-slate-800">
+              <span class="font-serif text-2xl sm:text-3xl text-slate-900 dark:text-slate-100">$899</span>
+              <span class="text-xs text-slate-600 dark:text-slate-400">/ 8-week intensive</span>
+            </div>
+            <ul class="space-y-3 text-xs text-slate-700 dark:text-slate-300 font-light">
+              <li>• 16 Live 1-on-1 Sessions (2x/week)</li>
+              <li>• Unlimited Async Video Error Walkthroughs</li>
+              <li>• Complete T14 Personal Statement Editing</li>
+              <li>• Mentorship Until Your Test Date</li>
+            </ul>
+          </div>
+          <a href="#schedule" class="w-full py-3 rounded bg-white dark:bg-noir-950 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-900 dark:text-slate-200 text-xs tracking-wider uppercase font-medium border border-slate-300 dark:border-slate-700 text-center block transition-colors">
+            Apply For Fellowship
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-champagne-100 dark:bg-noir-950 border-t border-slate-300 dark:border-slate-900 py-12 text-center text-xs text-slate-600 dark:text-slate-400 font-light transition-colors">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col items-center justify-center">
+      <!-- Footer Logo -->
+      <div class="flex items-center gap-2.5 mb-3">
+        <div class="w-7 h-7 rounded bg-noir-950 border border-champagne-500/40 dark:border-champagne-400/40 flex items-center justify-center p-1">
+          <svg viewBox="0 0 100 100" class="w-full h-full text-champagne-400">
+            <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="2" stroke-opacity="0.8"/>
+            <circle cx="50" cy="50" r="39" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2 3" stroke-opacity="0.4"/>
+            <path d="M 28 32 L 72 32 M 50 20 L 50 32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M 50 24 L 30 76 H 38 L 44 58 H 56 L 62 76 H 70 Z M 47 50 H 53 L 50 38 Z" fill="currentColor"/>
+            <path d="M 44 76 H 68 V 70 H 52 V 52 H 44 Z" fill="#f7f2e9" opacity="0.85"/>
+          </svg>
+        </div>
+        <span class="font-serif text-lg font-semibold text-slate-900 dark:text-slate-100 tracking-wider">ACADEMIA LOGICA</span>
+      </div>
+      <p class="text-xs text-slate-600 dark:text-slate-300 max-w-md mx-auto mb-4">
+        Cognitive Analytical LSAT Mentorship & T14 Admissions Consultancy.
+      </p>
+      <div class="text-[10px] text-slate-500 dark:text-slate-400">
+        © 2026 Academia Logica. LSAT® is a registered trademark of the Law School Admission Council (LSAC).
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    function toggleThemeManual() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+      lucide.createIcons();
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const openIcon = document.getElementById('menu-icon-open');
+      const closeIcon = document.getElementById('menu-icon-close');
+
+      if (menu.classList.contains('hidden')) {
+        menu.classList.remove('hidden');
+        openIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+      } else {
+        menu.classList.add('hidden');
+        openIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      }
+    }
+
+    function toggleIntakeMode(mode) {
+      const formWrap = document.getElementById('intake-form-wrap');
+      const calendlyWrap = document.getElementById('intake-calendly-wrap');
+      const formBtn = document.getElementById('tab-intake-btn');
+      const calBtn = document.getElementById('tab-calendly-btn');
+
+      if (mode === 'form') {
+        formWrap.classList.remove('hidden');
+        calendlyWrap.classList.add('hidden');
+        formBtn.className = 'text-champagne-600 dark:text-champagne-400 border-b border-champagne-600 dark:border-champagne-400 pb-1 font-semibold';
+        calBtn.className = 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 pb-1';
+      } else {
+        formWrap.classList.add('hidden');
+        calendlyWrap.classList.remove('hidden');
+        calBtn.className = 'text-champagne-600 dark:text-champagne-400 border-b border-champagne-600 dark:border-champagne-400 pb-1 font-semibold';
+        formBtn.className = 'text-slate-500 dark:text-slate-400 hover:text-slate-200 pb-1';
+      }
+    }
+
+    function handleIntakeSubmit(e) {
+      const accessKeyInput = document.querySelector('input[name="access_key"]');
+      if (!accessKeyInput || accessKeyInput.value === 'YOUR_WEB3FORMS_ACCESS_KEY') {
+        e.preventDefault();
+        document.getElementById('consultation-form').classList.add('hidden');
+        document.getElementById('consultation-success').classList.remove('hidden');
+      }
+    }
+
+    function recalcHorizon() {
+      const c = parseInt(document.getElementById('slider-cur').value);
+      const t = parseInt(document.getElementById('slider-tar').value);
+      const diff = Math.max(0, t - c);
+
+      document.getElementById('c-score-num').innerText = c;
+      document.getElementById('t-score-num').innerText = t;
+      document.getElementById('boost-num').innerText = `+${diff} Point Improvement`;
+
+      let tier = "Regional Accredited Programs";
+      let grant = "Standard Financial Aid";
+      let sal = "$95,000 / year starting";
+
+      if (t >= 172) {
+        tier = "T6 Elite (Yale, Harvard, Stanford, Columbia, NYU)";
+        grant = "$120,000 - Full Tuition Merit Fellowship";
+        sal = "$225,000 / year (BigLaw Starting Rate)";
+      } else if (t >= 168) {
+        tier = "T14 Top Tier (Penn, UVA, Berkeley, Michigan, Duke)";
+        grant = "$100,000 - $140,000 Merit Grants";
+        sal = "$225,000 / year (BigLaw Starting Rate)";
+      } else if (t >= 162) {
+        tier = "Top 30 Law Schools (UCLA, Vanderbilt, WashU)";
+        grant = "$60,000 - $80,000 Merit Aid";
+        sal = "$150,000 / year starting";
+      }
+
+      document.getElementById('out-tier').innerText = tier;
+      document.getElementById('out-grant').innerText = grant;
+      document.getElementById('out-salary').innerText = sal;
+    }
+  </script>
+</body>
+</html>
